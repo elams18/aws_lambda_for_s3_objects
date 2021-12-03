@@ -32,4 +32,5 @@ def lambda_handler(event, context):
         log.info(e)
         log.info(f'Error getting from bucket {S3_BUCKET}. Make sure they exist and your bucket is in the same region as this function.')
         response['error'] = e
+    
     return(response)
