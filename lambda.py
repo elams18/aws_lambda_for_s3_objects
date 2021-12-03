@@ -20,11 +20,14 @@ def lambda_handler(event, context):
         images = s3.list_objects(Bucket=S3_BUCKET, MaxKeys=10)
         response = dict()
         response['response'] = []
+        
         for image in images['Contents']:
             response['response'].append(S3_BASE_URL+image['Key'])
+        
         response['status'] = 200
         response['Content-Type']='application/json; charset=utf-8'
         response['count'] = len(response['response'])
+
     except Exception as e:
         log.info(e)
         log.info(f'Error getting from bucket {S3_BUCKET}. Make sure they exist and your bucket is in the same region as this function.')
