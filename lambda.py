@@ -16,6 +16,7 @@ def lambda_handler(event, context):
     log.info('Loading function')
     print(requests.get(S3_BASE_URL))
     response = dict()
+    
     try:
         log.info(f'Calling out to {S3_BUCKET} bucket to list objects')
         images = s3.list_objects(Bucket=S3_BUCKET, MaxKeys=10)
