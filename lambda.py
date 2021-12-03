@@ -1,4 +1,3 @@
-
 import json
 import urllib.parse
 import boto3
@@ -20,15 +19,16 @@ def lambda_handler(event, context):
     try:
         log.info(f'Calling out to {S3_BUCKET} bucket to list objects')
         images = s3.list_objects(Bucket=S3_BUCKET, MaxKeys=10)
-        response['response'] = []
+        response['data'] = {}
+        response['data']['links'] = []
         
         for image in images['Contents']:
-            response['response'].append(S3_BASE_URL+image['Key'])
+            response['data']['links'].append(S3_BASE_URL+image['Key'])
         
-        response['status'] = 200
+        response['status'] = "200"
         response['Content-Type']='application/json; charset=utf-8'
-        response['count'] = len(response['response']['links'])
-
+        response['count'] = len(response['data']['links'])
+    
     except Exception as e:
         log.info(e)
         log.info(f'Error getting from bucket {S3_BUCKET}. Make sure they exist and your bucket is in the same region as this function.')
