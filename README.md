@@ -22,8 +22,8 @@ This repo contains the implements of the /get-list endpoint to display the list 
       "https://imagesbewelldigital.s3.ap-south-1.amazonaws.com/autumn_leaves_PNG3613.png"
     ]
   },
-  "status": 200,
+  "status": "200",
   "Content-Type": "application/json; charset=utf-8",
-  "count": 1
+  "count": 10
 }
 ```
