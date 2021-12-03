@@ -27,7 +27,7 @@ def lambda_handler(event, context):
         
         response['status'] = 200
         response['Content-Type']='application/json; charset=utf-8'
-        response['count'] = len(response['response'])
+        response['count'] = len(response['response']['links'])
 
     except Exception as e:
         log.info(e)
